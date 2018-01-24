@@ -3,7 +3,7 @@ Welcome all Civic Community Developers!
  
 Here are some important resources:
  * [Docs](https://docs.civic.com/)
- * [Slack channel]
+ * [Slack channel](https://civic-community-dev.slack.com/messages/C8YE28GMV/) Email cdp@civic.com to request access.
  * [A useful example in PHP](https://github.com/blockvis/civic-sip-php)
  * [Integration Portal](https://integrate.civic.com/login) (Where to get your developer account.)
 
