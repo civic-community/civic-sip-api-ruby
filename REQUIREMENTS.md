@@ -1,5 +1,6 @@
 # Civic SIP Plugin - Ruby
-[The Bounty](https://cdp.civic.com/)
+
+## Bounty: $3000
 
 ### Overview
 The Civic SIP plugin is the most common method of integrating Civic into a partner website. The plugin interfaces with Civic's request APIs to create and display the QR codes and deep links necessary for users to share their data. To see the integration in action, [sign up for your developer account](https://integrate.civic.com/login). You'll need one anyways!
