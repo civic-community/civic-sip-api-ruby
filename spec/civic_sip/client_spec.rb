@@ -47,7 +47,7 @@ RSpec.describe CivicSIP::Client do
       # Create a JWT response token, signed with faked SIP key,
       # with encrypted user data payload (encrypted with app's secret)
       let!(:response_token) do
-        sip_response_token encrypt(secret, user_data.to_json), sip_key
+        sip_response_token encrypt(secret, user_data.to_json), sip_key, 'app42'
       end
 
       before do
@@ -127,7 +127,7 @@ RSpec.describe CivicSIP::Client do
       # Sign response with a different/unknown key
       # (not the private key matching the stubbed SIP public key)
       let(:response_token) do
-        sip_response_token encrypt(secret, user_data.to_json), unknown_key
+        sip_response_token encrypt(secret, user_data.to_json), unknown_key, 'app42'
       end
 
       it 'raises a JWT::VerificationError' do

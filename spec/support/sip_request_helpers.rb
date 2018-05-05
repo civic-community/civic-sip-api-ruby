@@ -18,7 +18,7 @@ module SIPRequestHelpers
   end
 
   # Encodes/signs a JWT similar to how SIP does
-  def sip_response_token(data, key)
+  def sip_response_token(data, key, app_id)
     JWT.encode(
       {
         jti: SecureRandom.hex,
@@ -26,7 +26,7 @@ module SIPRequestHelpers
         exp: (Time.now + 60 * 30).to_i,
         iss: 'civic-sip-hosted-service',
         aud: 'https://api.civic.com/sip/',
-        sub: 'app42',
+        sub: app_id,
         data: data
       },
       key,
