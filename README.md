@@ -183,9 +183,17 @@ For subsequent logins the `userId` returned by `exchange_code` can be used to as
 
 ## Running tests
 
-The tests are written with rspec and the suite can be run with:
+The tests are written with rspec.
 
+You can install the development dependencies by running:
+
+```sh
+bin/setup
 ```
+
+You can then run the suite with:
+
+```sh
 rake spec
 ```
 
