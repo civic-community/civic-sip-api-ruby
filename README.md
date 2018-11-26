@@ -1,55 +1,78 @@
-# WORK IN PROGRESS
+# Civic SIP SDK
 
-**Contributors**: Before submitting a pull request, be sure to read and agree to our [Terms and Conditions](https://s3-us-west-2.amazonaws.com/civic.com/cdp_terms.pdf). 
-
-# Civic SIP Plugin - Ruby
+[![Build Status](https://travis-ci.com/BinaryStorms/civic-sip-ruby-sdk.svg?branch=master)](https://travis-ci.com/BinaryStorms/civic-sip-ruby-sdk)
+[![Coverage Status](https://coveralls.io/repos/github/BinaryStorms/civic-sip-ruby-sdk/badge.svg?branch=master)](https://coveralls.io/github/BinaryStorms/civic-sip-ruby-sdk?branch=master)
 
 Civic [Secure Identity Platform (SIP)](https://www.civic.com/products/secure-identity-platform) API client implemented in Ruby.
-
-**Welcome Bounty Hunters!** Part of your job will be filling out the below. We've included some place holder notes to help with the structure. See [requirements](REQUIREMENTS.md) and [contributing](CONTRIBUTING.md) to get started.
 
 ## Geting Started
 
 ### Dependencies
 
-* {{ DEPENDENCY_LIST_ITEM }}
+* [HTTParty](https://github.com/jnunemaker/httparty) for making HTTP requests
+* [ruby-jwt](https://github.com/jwt/ruby-jwt) for handling all the JWT encoding/decoding
 
 ### Installing
 
-{{ HOWTO_INSTALL }}
+#### Using Rubygems
 
 ```
-{{ INSTALL_EXAMPLE }}
+gem install civic_sip_sdk
 ```
+
+#### Using bundler
+Add the following line in your `Gemfile`:
+
+```
+gem 'civic_sip_sdk'
+```
+
+then run ``` bundle install ```
 
 ### Usage
 
-{{ HOWTO_USE }}
+Exchange the JWT token for user data:
 
+```ruby
+require 'civic_sip_sdk'
+
+# appId - your Civic application id
+# env - your Civic app environment, :dev or :prod (default)
+# private key - your Civic private signing key
+# secret - your Civic secret
+client = CivicSIPSdk.new_client('appId', :env, 'private key', 'secret')
+user_data = client.exchange_code(jwt_token: 'your token from Civic frontend JS lib')
 ```
-{{ USE_EXAMPLE }}
+
+Access user data items:
+
+```ruby
+# Civic userId value
+user_id = user_data.user_id
+# get a list of all the user data items
+data_items = user_data.data_items
+# you can access all the attributes in each data item
+an_item = data_items.first
+label = an_item.label
+value = an_item.value
+is_valid = an_item.is_valid
+is_owner = an_item.is_owner
 ```
+
+Access user data item by label:
+
+```ruby
+an_item = user_data.by_label('contact.personal.email')
+label = an_item.label
+value = an_item.value
+is_valid = an_item.is_valid
+is_owner = an_item.is_owner
+```
+
 ### Running tests
 
-{{ HOWTO_RUN_TEST }}
-
-## Deployment
-
-{{ HOW_TO_DEPLOY }}
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/civic-community/civic-sip-api-ruby/tags).
-## Authors
-
-* **Author 1**
-See also the list of [contributors](https://github.com/civic-community/civic-sip-api-ruby/contributors) who participated in this project.
+``` bundle exec rspec ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
