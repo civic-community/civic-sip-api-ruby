@@ -1,0 +1,9 @@
+run.config:
+  engine: ruby
+  engine.config:
+    runtime: ruby-2.5
+  cache_dirs:
+    - vendor
+  build_triggers:
+    - Gemfile
+    - Gemfile.lock
