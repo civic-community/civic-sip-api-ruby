@@ -16,7 +16,7 @@ module CivicSIPSdk
     ENV_VAR = 'CIVIC_SIP_SDK_ENV'
     TEST_ENV = 'test'
 
-    HTTP_REQUEST_METHOD = :POST
+    HTTP_REQUEST_METHOD = 'POST'
 
     # Creates a client
     #
@@ -40,7 +40,7 @@ module CivicSIPSdk
           'Content-Type' => MIMETYPE_JSON,
           'Accept' => MIMETYPE_JSON,
           'Content-Length' => json_body_str.size.to_s,
-          'Authorization' => authorization_header(target_path: AUTH_CODE_PATH, body: json_body_str)
+          'Authorization' => authorization_header(body: json_body_str)
         },
         body: json_body_str
       )
@@ -57,13 +57,13 @@ module CivicSIPSdk
 
     private
 
-    def authorization_header(target_path:, body:)
+    def authorization_header(body:)
       jwt_token = Crypto.jwt_token(
         app_id: @config.id,
         sip_base_url: BASE_URL,
         data: {
           method: HTTP_REQUEST_METHOD,
-          path: target_path
+          path: AUTH_CODE_PATH
         },
         private_key: @config.private_key
       )

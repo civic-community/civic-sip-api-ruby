@@ -72,7 +72,7 @@ module CivicSIPSdk
     end
 
     def self.civic_extension(secret:, body:)
-      hmac = OpenSSL::HMAC.digest(HMAC_DIGEST, secret, JSON.generate(body))
+      hmac = OpenSSL::HMAC.digest(HMAC_DIGEST, secret, body)
       Base64.encode64(hmac)
     end
 
