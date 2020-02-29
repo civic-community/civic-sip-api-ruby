@@ -15,7 +15,7 @@ GEM
     hashdiff (0.3.7)
     jwt (2.1.0)
     public_suffix (3.0.2)
-    rake (10.5.0)
+    rake (13.0.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -41,7 +41,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   civic_sip!
-  rake (~> 10.0)
+  rake (~> 13.0)
   rspec (~> 3.0)
   webmock (~> 3.4.1)
 
